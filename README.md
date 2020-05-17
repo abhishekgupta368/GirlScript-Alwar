@@ -6,7 +6,7 @@
  ```
  pip install Django
  ```
-Please create folder by name ***django_alwar_website***
+Please create folder by name ***django_alwar_website*** and clone the file in that folder.
 
 # Perform database migration:
 
