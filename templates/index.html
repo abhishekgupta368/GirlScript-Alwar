@@ -1,26 +1,47 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<div class="home_container" style="background-image: url({% static 'images/MainPageHead.png' %});">
+<section id="home" class="home_container" style="background-image: url({% static 'images/MainPageHead.png' %});">
     <div class="section full-height">
         <div class="absolute-center">
             <div class="section">
                 <div class="container">
                     <div class="row">
                         <div class="col-12">
-                            <h1>
+                            <h1 class="home">
                                 <span>W</span><span>e</span><span>l</span><span>c</span><span>o</span><span>m</span><span>e</span> <span>t</span><span>o</span> <span>G</span><span>i</span><span>r</span><span>l</span><span>S</span><span>c</span><span>r</span><span>i</span><span>p</span><span>t</span> <span>A</span><span>l</span><span>w</span><span>a</span><span>r</span> <span>!</span></span><br>
                                 <!-- 		<span>L</span><span>e</span><span>t'</span><span>s</span> <span>c</span><span>o</span><span>d</span><span>e</span> <span>f</span><span>o</span><span>r</span> <span>f</span><span>r</span><span>e</span><span>e</span><span>d</span><span>o</span><span>m</span> -->
                             </h1>
-                            <p>Let's code for freedom</p>
+                            <p class="home">Let's code for freedom</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<div class="aboutUs_container"></div>
+</section>
+    <!-- ======= About Section ======= -->
+    <section id="about" class="about">
+      <div class="container">
+
+        <div class="row">
+          <div class="col-lg-6">
+            <img id="about" src="{% static 'images/receptionist_isometric.png' %}" class="img-fluid" alt="">
+          </div>
+          <div class="col-lg-6 pt-4 pt-lg-0 content">
+            <h3 class="about">About Us</h3>
+            <p class="about mt-2 text-justify">
+GirlScript Jaipur is a not-for-profit tech community under GirlScript India for Students, Software Developers, IT Professionals, and Entrepreneurs. The organizing team consists of energized individuals from several colleges in Jaipur. We believe in being the force that transforms how Students learn in India. We encourage our members to become the 'students they would want to teach'.
+            </p>
+            <br>
+            <p class="about mt-2 text-justify">
+                 GirlScript focuses on beginners and learners. At GirlScript, we try to entertain members from all domains irrespective of their experience, gender, and age through conducting free-of-cost workshops and technical programs. Our aim is to provide everyone with a platform to exchange great ideas and knowledge.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End About Section -->
 <div class="joinUs_container"></div>
 <div class="ourTeam_container"></div>
 <div class="prevTeam_container"></div>
