@@ -1,32 +1,29 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
-<div class="home_container">
-    
+<div class="home_container" style="background-image: url({% static 'images/MainPageHead.png' %});">
+    <div class="section full-height">
+        <div class="absolute-center">
+            <div class="section">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <h1>
+                                <span>W</span><span>e</span><span>l</span><span>c</span><span>o</span><span>m</span><span>e</span> <span>t</span><span>o</span> <span>G</span><span>i</span><span>r</span><span>l</span><span>S</span><span>c</span><span>r</span><span>i</span><span>p</span><span>t</span> <span>A</span><span>l</span><span>w</span><span>a</span><span>r</span> <span>!</span></span><br>
+                                <!-- 		<span>L</span><span>e</span><span>t'</span><span>s</span> <span>c</span><span>o</span><span>d</span><span>e</span> <span>f</span><span>o</span><span>r</span> <span>f</span><span>r</span><span>e</span><span>e</span><span>d</span><span>o</span><span>m</span> -->
+                            </h1>
+                            <p>Let's code for freedom</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-
-<div class="aboutUs_container">
-
-</div>
-
-<div class="joinUs_container">
-
-</div>
-
-<div class="ourTeam_container">
-
-</div>
-
-<div class="prevTeam_container">
-
-</div>
-
-<div class="meetUp_container">
-
-</div>
-
-<div class="contactUs_container">
-
-</div>
-
+<div class="aboutUs_container"></div>
+<div class="joinUs_container"></div>
+<div class="ourTeam_container"></div>
+<div class="prevTeam_container"></div>
+<div class="meetUp_container"></div>
+<div class="contactUs_container"></div>
 {% endblock content %}
