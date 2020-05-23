@@ -23,8 +23,65 @@
  .home_container{
      margin-top: 5%;
      background-repeat: no-repeat;
-     background-position: center top 250px;
+     background-position: center top 200px;
      background-size: 33% 50%;
+}
+/*--------------------------------------------------------------
+# Sections General
+--------------------------------------------------------------*/
+section {
+  padding: 60px 0;
+  overflow: hidden;
+}
+
+.section-bg {
+  background-color: #f9f9fa;
+}
+
+.section-title {
+  text-align: center;
+  padding: 30px 0;
+  position: relative;
+}
+
+.section-title h2 {
+  font-size: 32px;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  padding-bottom: 0;
+  color: #5f687b;
+  position: relative;
+  z-index: 2;
+}
+
+.section-title span {
+  position: absolute;
+  top: 30px;
+  color: #f0f1f3;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  font-weight: 700;
+  font-size: 52px;
+  text-transform: uppercase;
+  line-height: 0;
+}
+
+.section-title p {
+  margin-bottom: 0;
+  position: relative;
+  z-index: 2;
+}
+
+@media (max-width: 575px) {
+  .section-title h2 {
+    font-size: 28px;
+    margin-bottom: 15px;
+  }
+  .section-title span {
+    font-size: 38px;
+  }
 }
 /* #Navigation ================================================== */
  .start-header {
@@ -161,21 +218,21 @@
 }
  .absolute-center {
      position: absolute;
-     top: 15%;
+     /*top: 10%;*/
      left: 0;
      width: 100%;
      margin-top: 40px;
      transform: translateY(-50%);
      z-index: 20;
 }
- h1{
+ h1.home{
      font-size: 48px;
      line-height: 1.2;
      font-weight: 600;
      color: #3399ff;
      text-align: center;
 }
- p{
+ p.home{
      font-size: 30px;
      font-weight:300px;
      text-align: center;
@@ -188,7 +245,7 @@
      transition: all 300ms linear;
      transition-delay: 1700ms;
 }
- body.hero-anime p{
+ body.hero-anime p.home{
      opacity: 0;
      transform: translateY(40px);
      transition-delay: 1700ms;
@@ -367,61 +424,45 @@
      color: #fff;
      background-color: rgba(129,103,169,.6);
 }
- body.dark{
-     color: #fff;
-     background-color: #1f2029;
+
+ /*--------------------------------------------------------------
+# About
+--------------------------------------------------------------*/
+
+ h3.about{
+     font-weight: 700;
+     font-size: 48px;
+     line-height: 1.2;
+     color: #3399ff;
+     text-align: center;
 }
- body.dark h1{
-     color: #fff;
+p.about{
+margin: 0;
+    color: #212529;
+    font-weight: 370;
+    font-size: 16px;
+    line-height: 1.9em;
+    letter-spacing: 1px;
 }
- body.dark h1 span{
-     transition-delay: 0ms !important;
+
+.about .content p:last-child {
+  margin-bottom: 0;
 }
- body.dark p{
-     color: #fff;
-     transition-delay: 0ms !important;
+
+#about-image{
+     margin-left: -100px;
+     margin-top: 30px;
 }
- body.dark .bg-light {
-     background-color: #14151a !important;
-}
- body.dark .start-header {
-     box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.15);
-}
- body.dark .start-header.scroll-on {
-     box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.15);
-}
- body.dark .nav-link{
-     color: #fff !important;
-}
- body.dark .nav-item.active .nav-link{
-     color: #999 !important;
-}
- body.dark .dropdown-menu {
-     color: #fff;
-     background-color: #1f2029;
-     box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.25);
-}
- body.dark .dropdown-item {
-     color: #fff;
-}
- body.dark .navbar-light .navbar-toggler-icon {
-     border-bottom: 1px solid #fff;
-}
- body.dark .navbar-light .navbar-toggler-icon:after, body.dark .navbar-light .navbar-toggler-icon:before{
-     background-color: #fff;
-}
- body.dark .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
-     border-color: transparent;
-}
+
  @media (max-width: 767px) {
      .home_container{
          background-size: 68% 43%;
-         background-position: center top 300px;
+         background-position: center top 350px;
     }
      .absolute-center{
-         top: 25%;
+         top: 15%;
     }
-     p{
+     p.home{
          margin-bottom: 30px;
     }
      h1{
@@ -442,8 +483,10 @@
          background-color: #000;
          vertical-align: 0;
     }
-     body.dark .nav-item::before {
-         background-color: #fff;
+    #about-image{
+     margin-left: 0;
     }
 }
  
+
+
