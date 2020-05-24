@@ -1,0 +1,65 @@
+{% extends 'home.html' %}
+{% load static %}
+{% block content %}
+{% csrf_token %}
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>User Image</th>
+            <th>LinkedIn</th>
+            <th>Github</th>
+            <th>About</th>
+            <th>Status</th>
+            <th>Collage</th>
+        </tr>
+        {% for data in model_data %}
+            <tr>
+                <td>
+                    {{ data.name }}
+                </td>
+                <td>
+                    <img src="{{data.user_image.url}}" alt="Not Found" width="40" height="80">
+                </td>
+                <td>
+                    {{ data.linkedin_url }}
+                </td>
+                <td>
+                    {{ data.github_url }}
+                </td>
+                <td>
+                    {{ data.about_member }}
+                </td>
+                <td>
+                    {% if data.current_status == '1' %}
+                        <p>Yes</p>
+                    {% else %}
+                        <p>No</p>
+                    {% endif %}
+                </td>
+                <td>
+                    {{ data.college }}
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <table>
+        <tr>
+            <th>Member</th>
+            <th>Position</th>
+        </tr>
+        {% for data in model_position %}
+        <tr>
+            <td>{{ data.name }}</td>
+            <td>{{ data.position }}</td>
+        </tr>   
+        {% endfor %}
+    </table>
+
+    <script>
+        function delete_data(){
+            alert("Are you Sure!!!!");
+            
+        }
+    </script>
+{% endblock content %}

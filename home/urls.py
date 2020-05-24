@@ -19,4 +19,16 @@ from . import views
 
 urlpatterns = [
     path('home/',views.redirect_to_homepage,name='home'),
+    path('data_admin/',views.redirect_to_admin,name='data_admin'),
+    path('add_event/',views.redirect_to_event,name='add_event'),
+
+    path('update_whattsapp/',views.redirect_to_update_whattapp,name='update_whattsapp'),
+    path('update_telegram/',views.redirect_to_update_telegram,name='update_telegram'),
+
+    path('add_people/',views.redirect_to_member,name='add_people'),
+    path('display_member/',views.redirect_to_member_list,name='display_member'),
+
+    path('add_feedback/',views.redirect_to_add_feedback,name='add_feedback'),
+    path('display_data/',views.display_data,name='display_data'),
+    path('remove_data/<int:id>',views.remove_data,name='remove_data'),
 ]

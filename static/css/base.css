@@ -3,3 +3,12 @@
     padding: 0%;
 }
 
+.feedback_forum{
+    margin: 0px auto;
+    width: 50%;
+}
+
+table tr td,th{
+    text-align: center;
+    padding: 10px;
+}
