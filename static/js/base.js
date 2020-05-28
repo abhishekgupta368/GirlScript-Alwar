@@ -1,9 +1,27 @@
-$(document).ready(function() {
-    "use strict";
-	$(".team-list").on("click", "a", function(a) {
-        a.preventDefault();
-        var e = $(this).data("team");
-        $(".team-single").removeClass("active"), $(".team-list li").removeClass("active"), $("#" + e).addClass("active"), $(this).parent().addClass("active")
-    });
-	
+$(document).ready(function () {
+
+
+	let button = $("#show-more")
+
+	if ($('.core-team-li').length > 3) {
+
+		$('.core-team-li').each(function (index) {
+			let listItem = $(this);
+			if (index > 2) {
+				listItem.toggle();
+			}
+		})
+	}
+
+	button.on("click", function (e) {
+		if ($('.core-team-li').length > 3) {
+
+			$('.core-team-li').each(function (index) {
+				let listItem = $(this);
+				if (index > 2) {
+					listItem.toggle();
+				}
+			});
+		}
+	});
 });
