@@ -39,6 +39,12 @@
                 <td>
                     {{ data.college }}
                 </td>
+                <td>
+                    <a href="{% url 'update_member_data' data.id %}" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Update Infomation</a>
+                </td>
+                <td>
+                    <a href="{% url 'remove_member_data' data.id %}" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Delete User</a>
+                </td>
             </tr>
         {% endfor %}
     </table>

@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>GirlScript Alwar</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="{% static 'css/base.css'%}">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -21,22 +20,36 @@
           
             <!-- Links -->
             <ul class="navbar-nav">
+              
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'data_admin' %}">View Members</a>
+                <a class="nav-link" href="{% url 'display_feedback' %}">Check Feedback</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'add_people' %}">Add Member</a>
+              
+              <!-- Dropdown -->
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                  Update Event
+                </a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="{% url 'add_event' %}">Add Event</a>
+                  <a class="dropdown-item" href="{% url 'add_event_image'%}">Add Event Images</a>
+                  <a class="dropdown-item" href="{% url 'add_speaker' %}">Add Speak</a>
+                  <a class="dropdown-item" href="{% url 'add_schedule' %}">Add Schdule</a>
+                  <a class="dropdown-item" href="{% url 'display_user_event' %}">Display Data</a>
+                </div>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'display_member' %}">View Member</a>
+
+              <!-- Dropdown -->
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                  Update Member
+                </a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="{% url 'add_member' %}">Add Member</a>
+                  <a class="dropdown-item" href="{% url 'display_member' %}">Display Member</a>
+                </div>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'add_event' %}">Add Event</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'display_data' %}">Check Feedback</a>
-              </li>
-          
+
               <!-- Dropdown -->
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">

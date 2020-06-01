@@ -1,0 +1,13 @@
+{% extends 'home.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<h1>Add Feedback</h1>
+<form class="event_forum" method="POST" enctype="multipart/form-data">
+    {{ formset.management_data }} 
+    {% csrf_token %}
+    {{ formset|crispy }}
+    <input type="submit" value="Submit" class="btn btn-success"> 
+</form>
+
+{% endblock content%}

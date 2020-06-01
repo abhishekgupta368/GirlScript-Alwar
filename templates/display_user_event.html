@@ -1,0 +1,135 @@
+{% extends 'home.html'%}
+
+{% block content %}
+{% if member_information|length != 0 %}
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Event Image</th>
+            <th>Address</th>
+            <th>Latitutde</th>
+            <th>Longitude</th>
+            <th>Event date</th>
+            <th>About</th>
+        </tr>
+        {% for data in member_information %}
+            <tr>
+                <td>
+                    {{ data.event_name }}
+                </td>
+                <td>
+                    <img src="{{data.cover_image.url}}" alt="Not Found" width="40" height="80">
+                </td>
+                <td>
+                    {{ data.address }}
+                </td>
+                <td>
+                    {{ data.latitude }}
+                </td>
+                <td>
+                    {{ data.longitude }}
+                </td>
+                <td>
+                    {{ data.event_date }}
+                </td>
+                <td>
+                    {{ data.about_event }}
+                </td>
+                <td>
+                    <a href="{% url 'delete_user_member' data.id %}" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Delete User</a>
+                </td>
+
+            </tr>
+        {% endfor %}
+    </table>
+{% endif %}
+
+{% if speaker_information|length != 0 %}
+    <table>
+        <tr>
+            <th>Speaker Name</th>
+            <th>Event Image</th>
+            <th>Github</th>
+            <th>LinkedIn</th>
+            <th>Github</th>
+            <th>About</th>
+        </tr>
+        {% for data in speaker_information %}
+            <tr>
+                <td>
+                    {{ data.speaker_name }}
+                </td>
+                <td>
+                    <img src="{{data.speaker_image.url}}" alt="Not Found" width="40" height="80">
+                </td>
+                <td>
+                    {{ data.github_account }}
+                </td>
+                <td>
+                    {{ data.linkedin_account }}
+                </td>
+                <td>
+                    {{ data.about_speaker }}
+                </td>
+                <td>
+                    <a href="{% url 'delete_speaker' data.id %}" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Delete User</a>
+                </td>
+
+            </tr>
+        {% endfor %}
+    </table>
+{% endif %}
+
+{% if image_information|length != 0 %}
+    <table>
+        <tr>
+            <th>Event Name</th>
+            <th>Event Image</th>
+        </tr>
+        {% for data in image_information %}
+            <tr>
+                <td>
+                    {{ data.event_name }}
+                </td>
+                <td>
+                    <img src="{{data.album.url}}" alt="Not Found" width="40" height="80">
+                </td>
+                <td>
+                    <a href="{% url 'delete_event_image' data.id %}" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Delete User</a>
+                </td>
+
+            </tr>
+        {% endfor %}
+    </table>
+{% endif %}
+
+{% if schedule_information|length != 0 %}
+    <table>
+        <tr>
+            <th>Event Name</th>
+            <th>Event Image</th>
+        </tr>
+        {% for data in schedule_information %}
+            <tr>
+                <td>
+                    {{ data.schedule_name }}
+                </td>
+                <td>
+                    {{ data.start_time}}
+                </td>
+                <td>
+                    {{ data.end_time}}
+                </td>
+                <td>
+                    {{ data.description}}
+                </td>
+                <td>
+                    <a href="{% url 'delete_schedule' data.id %}" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Delete User</a>
+                </td>
+
+            </tr>
+        {% endfor %}
+    </table>
+{% endif %}
+
+{% endblock content%}

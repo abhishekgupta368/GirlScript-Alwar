@@ -1,17 +1,25 @@
 from django.shortcuts import render,HttpResponse,redirect
+from django.forms import formset_factory, modelformset_factory 
+
 from .models import UserFeedback
 from .models import WhattsappGroup
 from .models import TelegramGroup
 from .models import Team
 from .models import TeamPosition
+from .models import UserEvent,UserEventImage,Schedule,Speaker
 
 from .form import UserFeedBackForm
+
+from .form import UserEventForm,UserEventImageForm,ScheduleForm
+
 from .form import WhattsappGroupForm,TelegramGroupForm
 from .form import TeamForm,TeamPositionForm
 
+from django import forms
+
 # Create your views here.
 def redirect_to_homepage(request):
-    return render(request,'index.html')
+    return render(request,'home.html')
 
 #---------------------------------------------------------------------
 def display_data(request):
@@ -20,12 +28,12 @@ def display_data(request):
     return render(request,'display_data.html',user_data)
 
 def remove_data(request, id):
-    # try:
+    try:
         instance = UserFeedback.objects.get(id=id)
         instance.delete()
-        return redirect('display_data')
-    # except:
-    #     return display_data(request)
+        return redirect('display_feedback')
+    except:
+        return display_data(request)
 #---------------------------------------------------------------------
 def redirect_to_admin(request):
     return render(request,'administrator.html')
@@ -33,13 +41,36 @@ def redirect_to_admin(request):
 def redirect_to_member_list(request):
     all_members = Team.objects.all()
     all_position = TeamPosition.objects.all()
-    print(all_position[0].name)
     context ={
         'model_data': all_members,
         'model_position': all_position
     }
     return render(request,'display_member.html',context)
 
+def update_member_data(request,id):
+    member_form = TeamForm(request.POST,request.FILES)
+    if(request.method == 'POST'):
+        member_info = Team.objects.get(pk= id)
+        member_form = TeamForm(request.POST,request.FILES,instance=member_info)
+
+        if member_form.is_valid():
+            member_form.save()
+            return redirect('display_member')
+        
+    else:
+        member_info = Team.objects.get(pk= id)
+        member_form = TeamForm(instance=member_info)
+        print(member_info.linkedin_url)
+        context ={
+            'member_form':member_form
+        }
+
+        return render(request,'update_member_data.html',context)
+
+def remove_member_data(request,id):
+    instance = Team.objects.get(id=id)
+    instance.delete()
+    return redirect('display_member')
 #-----------------------------------------------------------------
 def redirect_to_member(request):
     Team_data = TeamForm(request.POST, request.FILES)
@@ -64,8 +95,164 @@ def redirect_to_member(request):
 
 #-------------------------------------------------------------
 def redirect_to_event(request):
-    return render(request,'add_event.html')
+    event_data = UserEventForm(request.POST,request.FILES)
+    if(event_data.is_valid()):
+        event_data.save()
+    context={
+        'event_form':event_data
+    }
+    return render(request,'add_event.html',context)
 
+def redirect_to_display_event(request):
+    all_events = UserEvent.objects.all()
+    all_speakers = Speaker.objects.all()
+    all_images = UserEventImage.objects.all()
+    all_schedule = Schedule.objects.all()
+
+    context = {
+        'member_information':all_events,
+        'speaker_information': all_speakers,
+        'image_information':all_images,
+        'schedule_information':all_schedule
+    }
+
+    return render(request,'display_user_event.html',context)
+
+def redirect_to_delete_event(request,id):
+    instance = UserEvent.objects.get(pk=id)
+    instance.delete()
+    return redirect('display_user_event')
+#------------------------------------------------------------
+def manage_field_cnt(request):
+    if(request.method == 'POST'):
+        event_id =  request.POST['event_data_object']
+        count = request.POST['member_cnt']
+        print(event_id)
+        print(count)
+        return redirect('load_speaker_fields',event_id=event_id,cnt = count)
+
+    else:
+        instance = UserEvent.objects.all()
+        context = {
+            'dropdown_data_list':instance
+        }
+        return render(request,'manage_speaker.html',context)
+
+def redirect_to_add_speaker(request,event_id,cnt):
+    SpeakerForm = modelformset_factory(Speaker,fields =['speaker_name','speaker_image','github_account','linkedin_account','about_speaker'],extra = cnt) 
+    formset = SpeakerForm(request.POST or None, request.FILES or None)
+    UserEvent_instance = UserEvent.objects.get(pk = event_id)
+
+    if formset.is_valid(): 
+        for form in formset:
+            speaker = Speaker(
+                event_name = UserEvent_instance,
+                speaker_name = form.cleaned_data.get('speaker_name'),
+                speaker_image = form.cleaned_data.get('speaker_image'),
+                github_account = form.cleaned_data.get('github_account'),
+                linkedin_account = form.cleaned_data.get('linkedin_account'),
+                about_speaker = form.cleaned_data.get('about_speaker'),
+            )
+            speaker.save()
+    
+    context = {
+        'formset':formset
+    }
+    
+    return render(request,'add_speaker.html',context)
+
+def delete_speaker(request,id):
+    instance = Speaker.objects.get(pk=id)
+    instance.delete()
+    return redirect('display_user_event')
+
+def redirect_to_add_event_image(request):
+    if(request.method == 'POST'):
+        event_id =  request.POST['event_data_object']
+        count = request.POST['image_cnt']
+        return redirect('load_image_fields',event_id=event_id,cnt = count)
+
+    else:
+        instance = UserEvent.objects.all()
+        context = {
+            'dropdown_data_list':instance
+        }
+        return render(request,'manage_image.html',context)
+
+def redirect_to_add_album(request,event_id,cnt):
+    UserEventImageForm = modelformset_factory(UserEventImage,fields =['album'],extra = cnt) 
+    formset = UserEventImageForm(request.POST or None, request.FILES or None)
+    UserEvent_instance = UserEvent.objects.get(pk = event_id)
+
+    if formset.is_valid(): 
+        for form in formset:
+            EventImage = UserEventImage(
+                event_name = UserEvent_instance,
+                album = form.cleaned_data.get('album'),
+            )
+            EventImage.save()
+    
+    context = {
+        'formset':formset
+    }
+    
+    return render(request,'add_image.html',context)
+
+def redirect_delete_event_image(request,id):
+    instance = UserEventImage.objects.get(pk=id)
+    instance.delete()
+    return redirect('display_user_event')
+#-------------------------------------------------------------
+
+def redirect_manage_schedule_cnt(request):
+    if(request.method == 'POST'):
+        event_id =  request.POST['event_data_object']
+        count = request.POST['schedules_cnt']
+        return redirect('load_schedule_fields',event_id=event_id,cnt = count)
+
+    else:
+        instance = UserEvent.objects.all()
+        context = {
+            'dropdown_data_list':instance
+        }
+        return render(request,'manage_schedule.html',context)
+
+class DateInput(forms.DateInput):
+    input_type = 'date'
+
+
+def redirect_add_schedule_event(request,event_id,cnt):
+    UserEventScheduleForm = modelformset_factory(Schedule,
+                                                fields =['schedule_name','start_time','end_time','description'],
+                                                widgets={
+                                                    'start_time':DateInput(),
+                                                    'end_time':DateInput(),
+                                                },
+                                                extra = cnt) 
+    formset = UserEventScheduleForm(request.POST or None, request.FILES or None)
+    UserEvent_instance = UserEvent.objects.get(pk = event_id)
+
+    if formset.is_valid(): 
+        for form in formset:
+            EventSchedule = Schedule(
+                event_name = UserEvent_instance,
+                schedule_name = form.cleaned_data.get('schedule_name'),
+                start_time = form.cleaned_data.get('start_time'),
+                end_time = form.cleaned_data.get('end_time'),
+                description = form.cleaned_data.get('description'),
+            )
+            EventSchedule.save()
+    
+    context = {
+        'formset':formset
+    }
+    
+    return render(request,'add_image.html',context)
+
+def redirect_delete_schedule(request,id):
+    Instance = Schedule.objects.get(pk = id)
+    Instance.delete()
+    return redirect('display_user_event')
 #-------------------------------------------------------------
 def redirect_to_update_whattapp(request):
     Whattsapp = WhattsappGroupForm(request.POST)
@@ -128,3 +315,6 @@ def redirect_to_add_feedback(request):
             'form':UserForm
         }
     return render(request,'add_feedback.html',context)
+
+#-----------------------------------------------------------------------------
+# def redirect_to_add_schduel

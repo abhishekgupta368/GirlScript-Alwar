@@ -1,0 +1,24 @@
+{% extends 'home.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<h1>Add Speakers</h1>
+<form class="manage_image_count_forum" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="exampleFormControlSelect1">Example select</label>
+        <select class="form-control" id="exampleFormControlSelect1" id ="event_data_object" name="event_data_object">
+            {% for data in dropdown_data_list %}
+                <option value={{data.id}}>{{data.event_name}}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="speak_count">Image Count: </label>
+        <input type="number" class="form-control" id="image_cnt" name='image_cnt' >
+    </div>
+
+    <input type="submit" value="Submit" class="btn btn-success"> 
+</form>
+
+{% endblock content%}
