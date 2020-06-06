@@ -2,7 +2,7 @@
 
 {% block content %}
 {% if member_information|length != 0 %}
-    <table>
+    <table class = "task_table">
         <tr>
             <th>Name</th>
             <th>Event Image</th>
@@ -45,7 +45,7 @@
 {% endif %}
 
 {% if speaker_information|length != 0 %}
-    <table>
+    <table class = "task_table">
         <tr>
             <th>Speaker Name</th>
             <th>Event Image</th>
@@ -81,7 +81,7 @@
 {% endif %}
 
 {% if image_information|length != 0 %}
-    <table>
+    <table class = "task_table">
         <tr>
             <th>Event Name</th>
             <th>Event Image</th>
@@ -104,10 +104,13 @@
 {% endif %}
 
 {% if schedule_information|length != 0 %}
-    <table>
+    <table class = "task_table">
         <tr>
-            <th>Event Name</th>
-            <th>Event Image</th>
+            <th>Schedule</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Description</th>
+            
         </tr>
         {% for data in schedule_information %}
             <tr>

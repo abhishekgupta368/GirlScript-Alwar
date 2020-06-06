@@ -2,7 +2,9 @@
 {% load static %}
 {% block content %}
 {% csrf_token %}
-    <table>
+
+{% if model_data|length != 0 %}
+    <table class = "task_table">
         <tr>
             <th>Name</th>
             <th>User Image</th>
@@ -48,8 +50,10 @@
             </tr>
         {% endfor %}
     </table>
+    {% endif %}
 
-    <table>
+    {% if model_position|length != 0 %}
+    <table class = "task_table">
         <tr>
             <th>Member</th>
             <th>Position</th>
@@ -61,11 +65,5 @@
         </tr>   
         {% endfor %}
     </table>
-
-    <script>
-        function delete_data(){
-            alert("Are you Sure!!!!");
-            
-        }
-    </script>
+    {% endif %}
 {% endblock content %}

@@ -16,8 +16,30 @@ from .form import WhattsappGroupForm,TelegramGroupForm
 from .form import TeamForm,TeamPositionForm
 
 from django import forms
+from django.contrib.auth import authenticate
 
 # Create your views here.
+
+def check_user(user_name,pass_word):
+    user = authenticate(username=user_name, password=pass_word)
+    if user is not None:
+        return True
+    else:
+        return False
+
+def AdminLogin(request):
+    if(request.method == "POST"):
+        print("Post data")
+        user_name = request.POST['user_name']
+        password = request.POST['pass_word']
+        if(check_user(user_name,password)):
+            return redirect('home')
+        else:
+            return render(request,"LoginAdmin.html",{"msg":"error"})
+    else:
+        return render(request,"LoginAdmin.html")
+         
+#-------------------------------------------------------
 def redirect_to_homepage(request):
     return render(request,'home.html')
 
