@@ -20,6 +20,7 @@ from . import views
 urlpatterns = [
     path('login/',views.AdminLogin,name='login'),
     path('home/',views.redirect_to_homepage,name='home'),
+    path('',views.redirect_to_homepage,name='home'),
     path('data_admin/',views.redirect_to_admin,name='data_admin'),
 
     path('add_event/',views.redirect_to_event,name='add_event'),
