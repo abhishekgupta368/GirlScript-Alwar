@@ -1,0 +1,12 @@
+{% extends 'home.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<h1>Update Members</h1>
+<form class="team_forum" enctype='multipart/form-data' method="POST">
+    {% csrf_token %}
+    {{ member_form|crispy }}
+
+    <input type="submit" class="btn btn-success" name="Update Member" value ="Update Member">
+</form>
+{% endblock content %}

@@ -2,7 +2,9 @@
 {% load static %}
 {% block content %}
 {% csrf_token %}
-    <table>
+
+{% if model_data|length != 0 %}
+    <table class = "task_table">
         <tr>
             <th>Name</th>
             <th>User Image</th>
@@ -39,11 +41,19 @@
                 <td>
                     {{ data.college }}
                 </td>
+                <td>
+                    <a href="{% url 'update_member_data' data.id %}" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Update Infomation</a>
+                </td>
+                <td>
+                    <a href="{% url 'remove_member_data' data.id %}" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Delete User</a>
+                </td>
             </tr>
         {% endfor %}
     </table>
+    {% endif %}
 
-    <table>
+    {% if model_position|length != 0 %}
+    <table class = "task_table">
         <tr>
             <th>Member</th>
             <th>Position</th>
@@ -55,11 +65,5 @@
         </tr>   
         {% endfor %}
     </table>
-
-    <script>
-        function delete_data(){
-            alert("Are you Sure!!!!");
-            
-        }
-    </script>
+    {% endif %}
 {% endblock content %}

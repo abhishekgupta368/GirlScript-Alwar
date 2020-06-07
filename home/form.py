@@ -70,6 +70,8 @@ class TeamPositionForm(forms.ModelForm):
         fields = [
             'position',
         ]
+class DateInput(forms.DateInput):
+    input_type = 'date'
 
 class UserEventForm(forms.ModelForm):
     class Meta:
@@ -78,7 +80,14 @@ class UserEventForm(forms.ModelForm):
             'event_name',
             'cover_image',
             'address',
+            'latitude',
+            'longitude',
+            'event_date',
+            'about_event',
         ]
+        widgets = {
+            'event_date': DateInput()
+        }
 
 class UserEventImageForm(forms.ModelForm):
     class Meta:
@@ -107,3 +116,7 @@ class ScheduleForm(forms.ModelForm):
             'end_time',
             'description',
         ]
+        widgets = {
+            'start_time': DateInput(),
+            'end_time':DateInput(),
+        }

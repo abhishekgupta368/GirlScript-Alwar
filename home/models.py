@@ -50,8 +50,8 @@ class UserEventImage(models.Model):
 class Schedule(models.Model):
     event_name = models.ForeignKey(UserEvent,on_delete=models.CASCADE)
     schedule_name = models.CharField(max_length=100,blank=False)
-    start_time = models.TimeField(auto_now=False, blank=False)
-    end_time = models.TimeField(auto_now=False, blank=False)
+    start_time = models.DateTimeField(auto_now=False, blank=False)
+    end_time = models.DateTimeField(auto_now=False, blank=False)
     description = models.TextField(blank=False)
 
     def __str__(self):
@@ -59,7 +59,7 @@ class Schedule(models.Model):
     
 class Speaker(models.Model):
     event_name = models.ForeignKey(UserEvent,on_delete=models.CASCADE)
-    speaker_name = models.TextField(max_length=50,blank=False)
+    speaker_name = models.CharField(max_length=50,blank=False)
     speaker_image = models.ImageField(upload_to='speaker_image', blank=False)
     github_account = models.URLField(max_length=100, blank=False)
     linkedin_account = models.URLField(max_length=100, blank=False)
