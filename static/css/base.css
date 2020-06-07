@@ -519,7 +519,7 @@ h3.join {
 }
 
 footer {
-    background: url(../images/footer.jpg) no-repeat bottom;
+    /*background: url(../images/footer.jpg) no-repeat bottom;*/
     background-size: cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;

@@ -41,7 +41,7 @@ def AdminLogin(request):
          
 #-------------------------------------------------------
 def redirect_to_homepage(request):
-    return render(request,'home.html')
+    return render(request,'index.html')
 
 #---------------------------------------------------------------------
 def display_data(request):
